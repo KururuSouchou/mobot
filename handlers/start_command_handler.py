@@ -52,7 +52,7 @@ def price(bot, update):
     for i in games:
         bot.send_message(
             chat_id=update.message.chat_id,
-            text=get_price(i),
+            text=i + "\r\n" + get_price(i),
             parse_mode="Markdown"
         )
 

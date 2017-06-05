@@ -49,9 +49,12 @@ def get_price(s):
         title = [
             i.string for i in title.contents if i.string.split()
         ][0]
-        lowest = soup.find_all(
-            "span", {"class": "price value"}
-        )[1].string
+        try:
+            lowest = soup.find_all(
+                "span", {"class": "price value"}
+            )[1].string
+        except IndexError:
+            lowest = ""
         title_line = "*%s* " % title
         current_line = "现价: `%s`" % current
         lowest_line = "最低: `%s`" % lowest
