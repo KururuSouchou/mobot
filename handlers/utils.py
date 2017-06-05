@@ -52,9 +52,9 @@ def get_price(s):
         lowest = soup.find_all(
             "span", {"class": "price value"}
         )[1].string
-        title_line = "# " + title
-        current_line = "* 现价: " + current
-        lowest_line = "* 最低价: " + lowest
+        title_line = "*%s* " % title
+        current_line = "现价: `%s`" % current
+        lowest_line = "最低: `%s`" % lowest
         msg = "\r\n".join([title_line, current_line, lowest_line])
     except IndexError:
         msg = "你讲乜柒"
