@@ -50,15 +50,18 @@ def deal(bot, update):
         choice_list.append(0)
     times = random.choice(choice_list)
     if times:
+        text = ""
         for i in range(times):
             t = random.choice(text_templates)
-            text = t.format(x)
+            text += t.format(x)
+            if i < times - 1:
+                text += "\r\n"
             text_templates.remove(t)
-            bot.send_message(
-                chat_id=update.message.chat_id,
-                text=text,
-                reply_to_message_id=update.message.message_id,
-            )
+        bot.send_message(
+            chat_id=update.message.chat_id,
+            text=text,
+            reply_to_message_id=update.message.message_id,
+        )
 
 
 dealhigh_handler = MessageHandler(
