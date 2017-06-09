@@ -3,3 +3,5 @@ future>=0.15.2
 PySocks
 pytz
 urllib3
+beautifulsoup4
+redis
