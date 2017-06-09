@@ -12,11 +12,6 @@ TZ = pytz.timezone('Asia/Shanghai')
 START = 9
 END = 18
 
-x = '生番'
-global x
-y = "person"
-global y
-
 
 class WorkdayEndFilter(BaseFilter):
 
