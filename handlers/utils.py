@@ -39,6 +39,11 @@ def get_price(s):
         url = urlparse.urljoin(base_url, s)
     else:
         url = urlparse.urljoin(base_url, "app/%s" % s)
+    check_url = 'https://www.steamprices.com/'
+    if s.startswith("bundle"):
+        check_url = urlparse.urljoin(check_url, s)
+    else:
+        check_url = urlparse.urljoin(check_url, "app/%s" % s)
 
     r = requests.get(url)
     soup = bs(r.content, 'html.parser')
@@ -61,7 +66,8 @@ def get_price(s):
         title_line = "*%s* " % title
         current_line = "现价: `%s`" % current
         lowest_line = "最低: `%s`" % lowest
-        msg = "\r\n".join([title_line, current_line, lowest_line])
+        check_line = "[去睇下](%s)" % check_url
+        msg = "\r\n".join([title_line, current_line, lowest_line, check_line])
     except IndexError:
         msg = "你讲乜柒"
     return msg
