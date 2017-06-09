@@ -36,13 +36,15 @@ def add(bot, update):
         bot.send_message(
             chat_id=update.message.chat_id,
             text=msg,
-            parse_mode="Markdown"
+            parse_mode="Markdown",
+            reply_to_message=update.message.message_id,
         )
     else:
         msg = "你想一次加几个呀仆街"
         bot.send_message(
             chat_id=update.message.chat_id,
             text=msg,
+            reply_to_message=update.message.message_id,
         )
 
 
@@ -53,7 +55,8 @@ def price(bot, update):
         bot.send_message(
             chat_id=update.message.chat_id,
             text=i + "\r\n" + get_price(i),
-            parse_mode="Markdown"
+            parse_mode="Markdown",
+            reply_to_message=update.message.message_id
         )
 
 
@@ -66,12 +69,14 @@ def remove(bot, update):
         bot.send_message(
             chat_id=update.message.chat_id,
             text="搞掂",
+            reply_to_message=update.message.message_id
         )
     else:
         msg = "你想删乜柒呀仆街"
         bot.send_message(
             chat_id=update.message.chat_id,
             text=msg,
+            reply_to_message=update.message.message_id
         )
 
 
@@ -80,7 +85,8 @@ def p_name(bot, update):
     db_set_list("person_name", new_names)
     bot.send_message(
         chat_id=update.message.chat_id,
-        text='可以屌埋{}啦！'.format(str(new_names))
+        text='可以屌埋{}啦！'.format(str(new_names)),
+        reply_to_message=update.message.message_id
     )
 
 
@@ -95,7 +101,8 @@ def p_temp(bot, update):
     else:
         bot.send_message(
             chat_id=update.message.chat_id,
-            text="粗口模板必须有一组{}， 唔多得唔少得。"
+            text="粗口模板必须有一组{}， 唔多得唔少得。",
+            reply_to_message=update.message.message_id
         )
 
 
@@ -104,7 +111,8 @@ def l_name(bot, update):
     db_set_list("location_name", new_names)
     bot.send_message(
         chat_id=update.message.chat_id,
-        text='可以屌埋{}啦！'.format(str(new_names))
+        text='可以屌埋{}啦！'.format(str(new_names)),
+        reply_to_message=update.message.message_id
     )
 
 
@@ -114,12 +122,14 @@ def l_temp(bot, update):
         db_set_list("location_temp", new_temp)
         bot.send_message(
             chat_id=update.message.chat_id,
-            text='可以用{}屌人啦！'.format(new_temp)
+            text='可以用{}屌人啦！'.format(new_temp),
+            reply_to_message=update.message.message_id
         )
     else:
         bot.send_message(
             chat_id=update.message.chat_id,
-            text="粗口模板必须有一组{}， 唔多得唔少得。"
+            text="粗口模板必须有一组{}， 唔多得唔少得。",
+            reply_to_message=update.message.message_id
         )
 
         
