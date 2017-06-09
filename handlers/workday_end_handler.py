@@ -59,7 +59,11 @@ def deal(bot, update):
             t = random.choice(text_templates)
             text = t.format(x)
             text_templates.remove(t)
-            bot.send_message(chat_id=update.message.chat_id, text=text)
+            bot.send_message(
+                chat_id=update.message.chat_id,
+                text=text,
+                reply_to_message_id=update.message.message_id,
+            )
 
 
 dealhigh_handler = MessageHandler(
