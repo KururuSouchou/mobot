@@ -44,7 +44,10 @@ def get_price(s):
     soup = bs(r.content, 'html.parser')
     try:
         a = soup.find_all("div", {"class": "col-sm-8"})[0]
-        current = a.find_all("td")[2].string
+        try:
+            current = a.find_all("td")[2].string
+        except IndexError:
+            current = ""
         title = soup.find("h1", {"class": "title"})
         title = [
             i.string for i in title.contents if i.string.split()
