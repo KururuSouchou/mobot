@@ -39,12 +39,11 @@ def get_price(s):
         url = urlparse.urljoin(base_url, s)
     else:
         url = urlparse.urljoin(base_url, "app/%s" % s)
-    check_url = 'https://www.steampowered.com/'
+    check_url = 'https://store.steampowered.com/'
     if s.startswith("bundle"):
         check_url = urlparse.urljoin(check_url, s)
     else:
         check_url = urlparse.urljoin(check_url, "app/%s" % s)
-
     r = requests.get(url)
     soup = bs(r.content, 'html.parser')
     try:
