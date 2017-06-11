@@ -1,21 +1,29 @@
 from telegram.ext import CommandHandler
-from .utils import db_get_list, db_set_list, db_remove, get_price
+from .utils import db_get_list, db_set_list, db_remove,\
+    get_price,set_legion, get_legion
 
 
 start_text = """
 命令：
     屌人：
-        /人 人名：增加可以屌啲人名，可以多个，半角空格隔开
-        /屌人 模板：模板为粗口，必须有一组{}用于插入人名
+        /人 人名
+            增加可以屌啲人名，可以多个，半角空格隔开
+        /屌人 模板
+            模板为粗口，必须有一组{}用于插入人名
     屌地方：
-        /地方 地名：参照屌人
-        /屌地方 模板：参照屌人
+        /地方 地名
+            参照屌人
+        /屌地方 模板
+            参照屌人
     增加关注游戏:
         /add 游戏id 或 bundle/bundle id
     去除关注游戏:
         /remove 游戏id 或 bundle/bundle id
     问价钱：
         /price
+    設定地區：
+        /region 地區代號
+            支那：cn, 日本：jp，米國：us，其餘自行查閱
 """
 
 
@@ -54,7 +62,9 @@ def price(bot, update):
     for i in games:
         bot.send_message(
             chat_id=update.message.chat_id,
-            text=i + "\r\n" + get_price(i),
+            text=i + "\r\n" + get_price(
+                i, get_legion(update.message.from_user.id)
+                ),
             parse_mode="Markdown",
             reply_to_message_id=update.message.message_id
         )
@@ -73,6 +83,25 @@ def remove(bot, update):
         )
     else:
         msg = "你想删乜柒呀仆街"
+        bot.send_message(
+            chat_id=update.message.chat_id,
+            text=msg,
+            reply_to_message_id=update.message.message_id
+        )
+
+
+def legion(bot, update):
+    msg_list = update.message.text.split()
+    if len(msg_list) == 2:
+        legion = update.message.text.split()[-1]
+        set_legion(update.message.from_user.id, legion)
+        bot.send_message(
+            chat_id=update.message.chat_id,
+            text="搞掂",
+            reply_to_message_id=update.message.message_id
+        )
+    else:
+        msg = "你想搞乜柒呀仆街"
         bot.send_message(
             chat_id=update.message.chat_id,
             text=msg,

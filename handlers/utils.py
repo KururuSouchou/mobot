@@ -8,6 +8,18 @@ import urllib.parse as urlparse
 db = Redis()
 
 
+def set_legion(user_id, v):
+    db.set("{}_legion".format(user_id), v)
+    
+
+def get_legion(user_id):
+    v = db.get("{}_legion".format(user_id))
+    if v:
+        return v.decode('utf-8')
+    else:
+        return 'cn'
+    
+
 def db_get_list(k):
     v = db.get(k)
     if v:
@@ -33,8 +45,8 @@ def db_remove(k, v):
         db.set(k, json.dumps(l))
 
 
-def get_price(s):
-    base_url = 'https://www.steamprices.com/cn/'
+def get_price(s, legion):
+    base_url = 'https://www.steamprices.com/{}/'.format(legion)
     if s.startswith("bundle"):
         url = urlparse.urljoin(base_url, s)
     else:
