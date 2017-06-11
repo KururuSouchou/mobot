@@ -15,6 +15,7 @@ start_text = """
             参照屌人
         `/屌地方 模板`
             参照屌人
+
 *查steam遊戲價錢*
     *增加关注游戏*
         `/add 游戏id 或 bundle/bundle id`
