@@ -47,7 +47,7 @@ def deal(bot, update):
     max_times = 3
     choice_list = list(range(1, max_times+1))
     for i in range(len(choice_list)):
-        choice_list.append(0)
+        choice_list.extend([0, 0, 0])
     times = random.choice(choice_list)
     if times:
         text = ""
