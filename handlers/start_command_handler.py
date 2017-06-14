@@ -1,6 +1,6 @@
 from telegram.ext import CommandHandler
 from .utils import db_get_list, db_set_list, db_remove,\
-    get_price,set_legion, get_legion
+    get_price, set_legion, get_legion
 
 
 start_text = """

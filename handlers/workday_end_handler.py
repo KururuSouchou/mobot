@@ -1,16 +1,6 @@
-# coding: utf-8
-from datetime import datetime
-import logging
 import random
-import pytz
 from telegram.ext import BaseFilter, Filters, MessageHandler
 from .utils import db_get_list
-
-
-log = logging.getLogger()
-TZ = pytz.timezone('Asia/Shanghai')
-START = 9
-END = 18
 
 
 class WorkdayEndFilter(BaseFilter):
