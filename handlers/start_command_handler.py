@@ -4,7 +4,8 @@ from .utils import db_get_list, db_set_list, db_remove,\
 
 
 start_text = """
-*講粗口*
+*講粗口
+*
     *屌人*
         `/人 人名`
             增加可以屌啲人名，可以多个，半角空格隔开
@@ -41,7 +42,7 @@ def add(bot, update):
     msg_list = update.message.text.split()
     if len(msg_list) == 2:
         game = update.message.text.split()[-1]
-        msg = get_price(game)
+        msg = get_price(game, get_legion(update.message.from_user.id))
         if msg != "你讲乜柒":
             db_set_list("user_%s" % str(update.message.from_user.id), [game])
         bot.send_message(
