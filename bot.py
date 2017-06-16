@@ -2,7 +2,7 @@
 import json
 import logging
 
-
+import os
 from telegram.ext import Updater
 from handlers import HANDLERS
 
@@ -10,6 +10,9 @@ logging.basicConfig(
     format='%(asctime)s %(name)s [%(levelname)s] %(message)s',
     level=logging.INFO
 )
+
+dir_path = os.path.dirname(os.path.realpath(__file__))
+os.chdir(dir_path)
 
 
 def main():
