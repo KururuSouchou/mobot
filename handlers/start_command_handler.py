@@ -4,8 +4,7 @@ from .utils import db_get_list, db_set_list, db_remove,\
 
 
 start_text = """
-*講粗口
-*
+*講粗口*
     *屌人*
         `/人 人名`
             增加可以屌啲人名，可以多个，半角空格隔开
