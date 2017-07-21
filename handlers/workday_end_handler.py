@@ -16,7 +16,10 @@ class WorkdayEndFilter(BaseFilter):
             if i in text:
                 to_fucks.append(i)
         if to_fucks:
-            to_fuck = random.choice(to_fucks)
+            if '生番' in to_fucks:
+                to_fuck = '生番'
+            else:
+                to_fuck = random.choice(to_fucks)
             global x
             x = to_fuck
             global y
@@ -36,8 +39,9 @@ def deal(bot, update):
     text_templates = db_get_list("%s_temp" % y)
     max_times = 3
     choice_list = list(range(1, max_times+1))
-    for i in range(len(choice_list)):
-        choice_list.extend([0, 0, 0])
+    if x != '生番':
+        for i in range(len(choice_list)):
+            choice_list.extend([0, 0, 0])
     times = random.choice(choice_list)
     if times:
         text = ""
