@@ -10,11 +10,19 @@ start_text = """
             增加可以屌啲人名，可以多个，半角空格隔开
         `/屌人 模板`
             模板为粗口，必须有一组{}用于插入人名
+        `/人100`
+            增加100%要屌啲人名(默認爲25%)
+        `/刪人`
+            刪除可以屌啲人名
+        `/刪人100`
+            刪除100%要屌啲人名(只取消100%屌，該屌照屌)
     *屌地方*
         `/地方 地名`
-            参照屌人
         `/屌地方 模板`
-            参照屌人
+        `/地方100`
+        `/刪地方`
+        `/刪地方100`
+        屌地方命令作用參照屌人
 
 *查steam遊戲價錢*
     *增加关注游戏*
@@ -122,6 +130,40 @@ def p_name(bot, update):
     )
 
 
+def p_name_100(bot, update):
+    new_names = update.message.text.split()[1:]
+    db_set_list("person_name", new_names)
+    db_set_list("person_100_name", new_names)
+    bot.send_message(
+        chat_id=update.message.chat_id,
+        text='可以100%屌埋{}啦！'.format(str(new_names)),
+        reply_to_message_id=update.message.message_id
+    )
+
+
+def remove_p_name(bot, update):
+    names = update.message.text.split()[1:]
+    for i in names:
+        db_remove("person_name", i)
+        db_remove("person_100_name", i)
+    bot.send_message(
+            chat_id=update.message.chat_id,
+            text="搞掂",
+            reply_to_message_id=update.message.message_id
+        )
+
+
+def remove_p_name_100(bot, update):
+    names = update.message.text.split()[1:]
+    for i in names:
+        db_remove("person_100_name", i)
+    bot.send_message(
+            chat_id=update.message.chat_id,
+            text="搞掂",
+            reply_to_message_id=update.message.message_id
+        )
+
+
 def p_temp(bot, update):
     if update.message.text.split()[-1].count("{}") == 1:
         new_temp = [update.message.text.split()[-1], ]
@@ -148,6 +190,40 @@ def l_name(bot, update):
     )
 
 
+def l_name_100(bot, update):
+    new_names = update.message.text.split()[1:]
+    db_set_list("location_name", new_names)
+    db_set_list("location_100_name", new_names)
+    bot.send_message(
+        chat_id=update.message.chat_id,
+        text='可以100%屌埋{}啦！'.format(str(new_names)),
+        reply_to_message_id=update.message.message_id
+    )
+
+
+def remove_l_name(bot, update):
+    names = update.message.text.split()[1:]
+    for i in names:
+        db_remove("location_name", i)
+        db_remove("location_100_name", i)
+    bot.send_message(
+            chat_id=update.message.chat_id,
+            text="搞掂",
+            reply_to_message_id=update.message.message_id
+        )
+
+
+def remove_l_name_100(bot, update):
+    names = update.message.text.split()[1:]
+    for i in names:
+        db_remove("location_100_name", i)
+    bot.send_message(
+            chat_id=update.message.chat_id,
+            text="搞掂",
+            reply_to_message_id=update.message.message_id
+        )
+
+
 def l_temp(bot, update):
     if update.message.text.count("{}") == 1:
         new_temp = [update.message.text.split()[-1], ]
@@ -167,10 +243,17 @@ def l_temp(bot, update):
         
 start_command_handler = CommandHandler('start', start)
 person_command_handler = CommandHandler('人', p_name)
+person_100_command_handler = CommandHandler('人100', p_name_100)
 fuck_person_command_handler = CommandHandler('屌人', p_temp)
 location_command_handler = CommandHandler('地方', l_name)
+location_100_command_handler = CommandHandler('地方100', l_name_100)
 fuck_location_command_handler = CommandHandler('屌地方', l_temp)
+person_remove_handler = CommandHandler('刪人', remove_p_name)
+person_100_remove_handler = CommandHandler('刪人100', remove_p_name_100)
+location_remove_handler = CommandHandler('刪地方', remove_l_name)
+location_100_remove_handler = CommandHandler('刪地方100', remove_l_name_100)
 add_game_command_handler = CommandHandler('add', add)
 remove_game_command_handler = CommandHandler('remove', remove)
 price_command_handler = CommandHandler('price', price)
 legion_command_handler = CommandHandler('legion', legion)
+

@@ -8,7 +8,10 @@ class WorkdayEndFilter(BaseFilter):
     def _keyword_detect(self, text):
         persons = db_get_list("person_name")
         locations = db_get_list("location_name")
+        person_100 = db_get_list("person_100_name")
+        location_100 = db_get_list("location_100_name")
         to_fucks = []
+        must_fucks = []
         for i in persons:
             if i in text:
                 to_fucks.append(i)
@@ -16,7 +19,13 @@ class WorkdayEndFilter(BaseFilter):
             if i in text:
                 to_fucks.append(i)
         if to_fucks:
-            to_fuck = random.choice(to_fucks)
+            for i in to_fucks:
+                if i in person_100 or i in location_100:
+                    must_fucks.append(i)
+            if must_fucks:
+                to_fuck = random.choice(must_fucks)
+            else:
+                to_fuck = random.choice(to_fucks)
             global x
             x = to_fuck
             global y
@@ -36,8 +45,12 @@ def deal(bot, update):
     text_templates = db_get_list("%s_temp" % y)
     max_times = 3
     choice_list = list(range(1, max_times+1))
-    for i in range(len(choice_list)):
-        choice_list.extend([0, 0, 0])
+    must_fuck_persons = db_get_list("person_100_name")
+    must_fuck_locations = db_get_list("location_100_name")
+    must_fucks = must_fuck_persons + must_fuck_locations
+    if x not in must_fucks:
+        for i in range(len(choice_list)):
+            choice_list.extend([0, 0, 0])
     times = random.choice(choice_list)
     if times:
         text = ""
