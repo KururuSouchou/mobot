@@ -255,5 +255,5 @@ location_100_remove_handler = CommandHandler('刪地方100', remove_l_name_100)
 add_game_command_handler = CommandHandler('add', add)
 remove_game_command_handler = CommandHandler('remove', remove)
 price_command_handler = CommandHandler('price', price)
-legion_command_handler = CommandHandler('legion', legion)
+legion_command_handler = CommandHandler('region', legion)
 
