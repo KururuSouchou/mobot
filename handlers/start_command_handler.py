@@ -12,28 +12,18 @@ start_text = """
             模板为粗口，必须有一组{}用于插入人名
         `/人100`
             增加100%要屌啲人名(默認爲25%)
-        `/刪人`
+        `/删人`
             刪除可以屌啲人名
-        `/刪人100`
+        `/删人100`
             刪除100%要屌啲人名(只取消100%屌，該屌照屌)
     *屌地方*
         `/地方 地名`
         `/屌地方 模板`
         `/地方100`
-        `/刪地方`
-        `/刪地方100`
+        `/删地方`
+        `/删地方100`
         屌地方命令作用參照屌人
 
-*查steam遊戲價錢*
-    *增加关注游戏*
-        `/add 游戏id 或 bundle/bundle id`
-    *去除关注游戏*
-        `/remove 游戏id 或 bundle/bundle id`
-    *问价钱*
-        `/price`
-    *設定地區*
-        `/region 地區代號`
-            支那：cn, 日本：jp，米國：us，其餘自行查閱
 """
 
 
@@ -248,10 +238,10 @@ fuck_person_command_handler = CommandHandler('屌人', p_temp)
 location_command_handler = CommandHandler('地方', l_name)
 location_100_command_handler = CommandHandler('地方100', l_name_100)
 fuck_location_command_handler = CommandHandler('屌地方', l_temp)
-person_remove_handler = CommandHandler('刪人', remove_p_name)
-person_100_remove_handler = CommandHandler('刪人100', remove_p_name_100)
-location_remove_handler = CommandHandler('刪地方', remove_l_name)
-location_100_remove_handler = CommandHandler('刪地方100', remove_l_name_100)
+person_remove_handler = CommandHandler('删人', remove_p_name)
+person_100_remove_handler = CommandHandler('删人100', remove_p_name_100)
+location_remove_handler = CommandHandler('删地方', remove_l_name)
+location_100_remove_handler = CommandHandler('删地方100', remove_l_name_100)
 add_game_command_handler = CommandHandler('add', add)
 remove_game_command_handler = CommandHandler('remove', remove)
 price_command_handler = CommandHandler('price', price)
